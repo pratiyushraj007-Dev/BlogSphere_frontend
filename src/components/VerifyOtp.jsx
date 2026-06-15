@@ -1,8 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef } from "react";
 import "../css/authentication.css";
+import AlertContainer from "./AlertContainer";
+i
 const VerifyOtp = () => {
-    const [isAuthorized,setAuthorized]=useState(true);
-    const [otp,setOtp]=useState('');
+    const [message, setMessage] = useState("Please wait while we process your request.");
+    const [spinner, setSpinner] = useState(true);
+    const alertContainer = useRef();
+    const [isAuthorized, setAuthorized] = useState(true);
+    const [otp, setOtp] = useState('');
     useEffect(() => {
         const verify = async () => {
             try {
@@ -22,25 +27,27 @@ const VerifyOtp = () => {
         verify();
     }, [])
 
-    const handleChange=(e)=>{
+    const handleChange = (e) => {
         setOtp(e.target.value);
     }
 
-    const handleSubmit=async(e)=>{
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res=await fetch("http://localhost:5000/api/auth/register",{
-                method:"POST",
-                credentials:"include",
+            alertContainer.current.style.display="flex";
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
+                method: "POST",
+                credentials: "include",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body:JSON.stringify({otp})
+                body: JSON.stringify({ otp })
             })
-            const data=await res.json();
-            alert(data.message)
-            if(data.message==="You are registered"){
-                window.location.href="/login"
+            const data = await res.json();
+            setMessage(data.message);
+            setSpinner(false)
+            if (data.message === "You are registered") {
+                window.location.href = "/login"
             }
         } catch (error) {
             console.log(error)
@@ -49,18 +56,19 @@ const VerifyOtp = () => {
     }
 
     return (
-       <>
-         {isAuthorized ?
-             <section id="otpFormContainer" onSubmit={handleSubmit}>
-            <form action="" id="otpForm">
-                <label htmlFor="userOtp">Enter your 6-digit OTP sent to your registered email</label>
-                <input type="number" name="userOtp" id="userOtp" value={otp} autoComplete="off" onChange={handleChange} />
-                <div className="formBtn">
-                    <input type="submit" value="Submit"  />
-                </div>
-            </form>
-        </section>:<p>unauthorised</p>}
-       </>
+        <>
+        <AlertContainer para={message} isSpinner={spinner} ref={alertContainer} />
+            {isAuthorized ?
+                <section id="otpFormContainer" onSubmit={handleSubmit}>
+                    <form action="" id="otpForm">
+                        <label htmlFor="userOtp">Enter your 6-digit OTP sent to your registered email</label>
+                        <input type="number" name="userOtp" id="userOtp" value={otp} autoComplete="off" onChange={handleChange} />
+                        <div className="formBtn">
+                            <input type="submit" value="Submit" />
+                        </div>
+                    </form>
+                </section> : <p>unauthorised</p>}
+        </>
     )
 }
 export default VerifyOtp;
