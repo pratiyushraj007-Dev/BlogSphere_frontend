@@ -1,7 +1,6 @@
 import { useEffect, useState,useRef } from "react";
 import "../css/authentication.css";
 import AlertContainer from "./AlertContainer";
-i
 const VerifyOtp = () => {
     const [message, setMessage] = useState("Please wait while we process your request.");
     const [spinner, setSpinner] = useState(true);
