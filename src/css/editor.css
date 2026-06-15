@@ -1,0 +1,779 @@
+/* =============================================
+   EDITOR LAYOUT — full-width container
+   ============================================= */
+.ProseMirror {
+    caret-color: black !important;
+}
+
+.editorContainer {
+    width: 85%;
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.authorInfo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+.authorInfo label,
+.blogContentPara {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.authorInfo input {
+    font-size: 1.6rem;
+    color: black;
+    padding: 7px;
+    border-radius: 5px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.authorInfo input:hover,
+textarea:hover {
+    box-shadow: 0px 0px 20px #118ab2;
+}
+
+.authorInfo textarea {
+    height: 140px;
+    color: black;
+    padding: 7px;
+}
+
+/* =============================================
+   TOOLBAR SHELL
+   The menubar wraps the scrollable toolbar row.
+   On mobile it becomes a sticky horizontal scroll strip.
+   ============================================= */
+.menubar {
+    background: linear-gradient(135deg, #1a1f2e 0%, #16213e 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: none;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    /* On mobile this becomes sticky */
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+/* ── Inner scroll track ── */
+.menuBarButton {
+    display: flex;
+    flex-wrap: wrap;
+    /* Desktop: groups can wrap to next row */
+    align-items: center;
+    gap: 4px;
+    padding: 8px 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ── Group ── */
+.toolbar-group {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex-shrink: 0;
+    /* Never crush a group */
+}
+
+/* ── Divider ── */
+.toolbar-divider {
+    display: inline-block;
+    width: 1px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.15);
+    margin: 0 4px;
+    flex-shrink: 0;
+}
+
+/* ── Base Button ── */
+.toolbar-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    /* Prevent squeeze */
+    border: 1px solid transparent;
+    border-radius: 6px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.75);
+    cursor: pointer;
+    transition:
+        background 0.18s ease,
+        color 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.12s ease,
+        box-shadow 0.18s ease;
+    position: relative;
+    flex-shrink: 0;
+    -webkit-tap-highlight-color: transparent;
+    /* Remove tap flash on mobile */
+    touch-action: manipulation;
+    /* Faster tap response */
+    user-select: none;
+}
+
+.toolbar-btn svg {
+    pointer-events: none;
+    flex-shrink: 0;
+}
+
+.toolbar-btn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.toolbar-btn:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.toolbar-btn.is-active {
+    background: linear-gradient(135deg, #118ab2 0%, #06d6a0 100%);
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 0 12px rgba(17, 138, 178, 0.5);
+}
+
+.toolbar-btn.is-active:hover {
+    background: linear-gradient(135deg, #0d7a9e 0%, #04c090 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 0 18px rgba(17, 138, 178, 0.7);
+}
+
+.toolbar-btn.disabled,
+.toolbar-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* ── CSS Tooltip (desktop only) ── */
+.toolbar-btn::after {
+    content: attr(title);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    font-size: 0.68rem;
+    white-space: nowrap;
+    padding: 4px 8px;
+    border-radius: 4px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 200;
+}
+
+.toolbar-btn:hover::after {
+    opacity: 1;
+}
+
+/* =============================================
+   LINK MODAL
+   ============================================= */
+.link-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.link-modal {
+    background: linear-gradient(135deg, #1a1f2e 0%, #16213e 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    padding: 28px 32px;
+    width: 100%;
+    max-width: 440px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(17, 138, 178, 0.15);
+    animation: slideUp 0.25s ease;
+    box-sizing: border-box;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.link-modal-title {
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0 0 18px 0;
+    letter-spacing: 0.5px;
+}
+
+.link-modal-input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+    margin-bottom: 18px;
+}
+
+.link-modal-input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.link-modal-input:focus {
+    border-color: #118ab2;
+    box-shadow: 0 0 0 3px rgba(17, 138, 178, 0.2);
+}
+
+.link-modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.link-modal-btn {
+    padding: 9px 20px;
+    border-radius: 7px;
+    border: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    flex: 1;
+    min-width: 80px;
+    text-align: center;
+}
+
+.link-modal-btn:hover {
+    transform: translateY(-1px);
+}
+
+.link-modal-btn.apply {
+    background: linear-gradient(135deg, #118ab2, #06d6a0);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(17, 138, 178, 0.4);
+}
+
+.link-modal-btn.apply:hover {
+    box-shadow: 0 6px 20px rgba(17, 138, 178, 0.6);
+}
+
+.link-modal-btn.remove {
+    background: linear-gradient(135deg, #d62828, #e76f51);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(214, 40, 40, 0.3);
+}
+
+.link-modal-btn.remove:hover {
+    box-shadow: 0 6px 20px rgba(214, 40, 40, 0.5);
+}
+
+.link-modal-btn.cancel {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.link-modal-btn.cancel:hover {
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+}
+
+/* =============================================
+   EDITOR CONTENT AREA
+   ============================================= */
+.textEditor {
+    background-color: #ffffff;
+    padding: 20px 24px;
+    border-radius: 0 0 10px 10px;
+    font-size: 1.3rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: none;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+.textEditor * {
+    color: black;
+}
+
+.ProseMirror {
+    min-height: 80vh;
+    border: none;
+    outline: none;
+    caret-color: black;
+}
+
+/* Editor typography */
+.ProseMirror h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0.8em 0 0.4em;
+}
+
+.ProseMirror h2 {
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin: 0.8em 0 0.4em;
+}
+
+.ProseMirror h3 {
+    font-size: 1.45rem;
+    font-weight: 600;
+    margin: 0.6em 0 0.3em;
+}
+
+.ProseMirror h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0.5em 0 0.25em;
+}
+
+.ProseMirror h5 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0.5em 0 0.25em;
+}
+
+.ProseMirror h6 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0.5em 0 0.25em;
+    color: #555;
+}
+
+.ProseMirror p {
+    margin: 0.5em 0;
+    line-height: 1.7;
+}
+
+.ProseMirror ul,
+.ProseMirror ol {
+    padding-left: 1.8em;
+    margin: 0.5em 0;
+}
+
+.ProseMirror li {
+    line-height: 1.7;
+    margin: 0.2em 0;
+}
+
+.ProseMirror blockquote {
+    border-left: 4px solid #118ab2;
+    background: rgba(17, 138, 178, 0.07);
+    margin: 1em 0;
+    padding: 0.6em 1.2em;
+    border-radius: 0 6px 6px 0;
+    font-style: italic;
+    color: #333 !important;
+}
+
+.ProseMirror code {
+    background: #f0f0f0;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 0.9em;
+    color: #c0392b !important;
+}
+
+.ProseMirror pre {
+    background: #1e1e2e;
+    border-radius: 8px;
+    padding: 16px 20px;
+    overflow-x: auto;
+    margin: 1em 0;
+}
+
+.ProseMirror pre code {
+    background: none;
+    border: none;
+    color: #cdd6f4 !important;
+    padding: 0;
+    font-size: 0.92rem;
+}
+
+.ProseMirror hr {
+    border: none;
+    border-top: 2px solid rgba(0, 0, 0, 0.12);
+    margin: 1.5em 0;
+}
+
+.editor-link,
+.ProseMirror a {
+    color: #118ab2 !important;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.15s ease;
+}
+
+.editor-link:hover,
+.ProseMirror a:hover {
+    color: #06d6a0 !important;
+}
+
+.ProseMirror img {
+    max-width: 350px !important;
+    width: 100% !important;
+    user-select: none;
+    height: auto;
+    display: block;
+    margin: auto;
+    border-radius: 6px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* =============================================
+   PUBLISH / DISCARD BUTTONS
+   ============================================= */
+.contentButtonGroup {
+    margin-top: 20px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.contentButton {
+    font-size: 1.5rem;
+    padding: 8px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.contentButton:hover {
+    border: 1px solid #fff;
+    transform: scale(1.08);
+}
+
+#publishButton {
+    background: linear-gradient(135deg, #118ab2, #06d6a0);
+    color: #fff;
+    box-shadow: 0 0 18px rgba(17, 138, 178, 0.5);
+}
+
+#publishButton:hover {
+    box-shadow: 0 0 28px rgba(17, 138, 178, 0.8);
+}
+
+#discardButton {
+    background: linear-gradient(135deg, #d62828, #e76f51);
+    color: #fff;
+    box-shadow: 0 0 18px rgba(214, 40, 40, 0.4);
+}
+
+#discardButton:hover {
+    box-shadow: 0 0 28px rgba(214, 40, 40, 0.7);
+}
+
+/* =============================================
+   LEGACY COMPAT
+   ============================================= */
+.menubar button {
+    border-radius: 6px;
+    padding: 4px;
+}
+
+.is-active {
+    background: linear-gradient(135deg, #118ab2 0%, #06d6a0 100%) !important;
+    color: #fff !important;
+}
+
+button svg path,
+line {
+    color: inherit;
+}
+
+.editorContent {
+    width: 85%;
+    margin: auto;
+}
+
+/* =============================================
+   ██████████  RESPONSIVE  ██████████
+   ============================================= */
+
+/* ── Tablet: 481 – 900px ──────────────────────
+   Toolbar wraps naturally but we trim some
+   padding and shrink buttons slightly.
+   ─────────────────────────────────────────── */
+@media (max-width: 900px) {
+
+    .editorContainer,
+    .editorContent {
+        width: 95%;
+    }
+
+    .menubar {
+        border-radius: 8px 8px 0 0;
+    }
+
+    .menuBarButton {
+        gap: 3px;
+        padding: 7px 8px;
+    }
+
+    .toolbar-btn {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        border-radius: 5px;
+    }
+
+    .toolbar-divider {
+        margin: 0 3px;
+    }
+
+    .authorInfo label,
+    .blogContentPara {
+        font-size: 1.3rem;
+    }
+
+    .authorInfo input {
+        font-size: 1.4rem;
+    }
+
+    .contentButton {
+        font-size: 1.3rem;
+        padding: 7px 18px;
+    }
+}
+
+/* ── Mobile: ≤ 600px ──────────────────────────
+   Switch to a single horizontal-scrolling row.
+   Groups never wrap; users swipe left/right.
+   Mimics Google Docs / Notion mobile toolbar.
+   ─────────────────────────────────────────── */
+@media (max-width: 600px) {
+
+    .editorContainer,
+    .editorContent {
+        width: 100%;
+    }
+
+    /* Sticky toolbar at top with smooth shadow */
+    .menubar {
+        border-radius: 0;
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+        border-left: none;
+        border-right: none;
+    }
+
+    /* ── Scroll track ── */
+    .menuBarButton {
+        flex-wrap: nowrap;
+        /* Single row — no wrapping */
+        overflow-x: auto;
+        /* Horizontal scroll */
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x proximity;
+        scroll-behavior: smooth;
+        padding: 8px 6px;
+        gap: 2px;
+
+        /* Hide scrollbar visually but keep it functional */
+        scrollbar-width: none;
+        /* Firefox */
+        -ms-overflow-style: none;
+        /* IE/Edge */
+    }
+
+    .menuBarButton::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Chrome/Safari */
+
+    /* Groups snap into view as you swipe */
+    .toolbar-group {
+        scroll-snap-align: start;
+        flex-shrink: 0;
+    }
+
+    /* Touch-friendly size: 44×44 minimum (Apple HIG) */
+    .toolbar-btn {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        border-radius: 6px;
+    }
+
+    /* Disable tooltips on touch (they stay stuck) */
+    .toolbar-btn::after {
+        display: none;
+    }
+
+    /* Thinner dividers on mobile */
+    .toolbar-divider {
+        height: 24px;
+        margin: 0 2px;
+    }
+
+    /* Editor area full-bleed */
+    .textEditor {
+        border-radius: 0;
+        padding: 14px 12px;
+        font-size: 1.1rem;
+    }
+
+    .ProseMirror {
+        min-height: 60vh;
+    }
+
+    /* Typography scale down */
+    .ProseMirror h1 {
+        font-size: 1.6rem;
+    }
+
+    .ProseMirror h2 {
+        font-size: 1.4rem;
+    }
+
+    .ProseMirror h3 {
+        font-size: 1.2rem;
+    }
+
+    .ProseMirror h4,
+    .ProseMirror h5,
+    .ProseMirror h6 {
+        font-size: 1.05rem;
+    }
+
+    /* Form fields */
+    .authorInfo label,
+    .blogContentPara {
+        font-size: 1.1rem;
+    }
+
+    .authorInfo input {
+        font-size: 1.2rem;
+    }
+
+    .authorInfo textarea {
+        height: 100px;
+    }
+
+    /* Buttons row */
+    .contentButtonGroup {
+        gap: 8px;
+    }
+
+    .contentButton {
+        font-size: 1.1rem;
+        padding: 10px 16px;
+        flex: 1;
+        /* Each button fills equal share */
+        text-align: center;
+    }
+
+    /* Link modal: full-width sheet on mobile */
+    .link-modal {
+        padding: 22px 20px;
+        border-radius: 16px 16px 0 0;
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+    }
+
+    .link-modal-overlay {
+        align-items: flex-end;
+        /* Slide up from bottom */
+        padding: 0;
+    }
+
+    .link-modal-title {
+        font-size: 1.1rem;
+    }
+
+    .link-modal-actions {
+        flex-wrap: wrap;
+    }
+
+    .link-modal-btn {
+        flex: 1 1 calc(50% - 5px);
+    }
+}
+
+/* ── Very small screens: ≤ 380px ─────────────
+   Further compress without losing usability.
+   ─────────────────────────────────────────── */
+@media (max-width: 380px) {
+    .toolbar-btn {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+    }
+
+    .textEditor {
+        padding: 10px 8px;
+    }
+
+    .contentButton {
+        font-size: 1rem;
+        padding: 9px 12px;
+    }
+}
+
+/* ── Large screens: ≥ 1400px ─────────────────
+   More breathing room on big monitors.
+   ─────────────────────────────────────────── */
+@media (min-width: 1400px) {
+
+    .editorContainer,
+    .editorContent {
+        width: 78%;
+    }
+
+    .toolbar-btn {
+        width: 36px;
+        height: 36px;
+    }
+}

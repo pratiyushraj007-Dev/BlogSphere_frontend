@@ -1,0 +1,57 @@
+#userForm{
+    display: flex;
+    flex-direction: column;
+    max-width:55rem;
+    width: auto;
+    margin: auto;
+    padding: 6px;
+    margin-top: 85px;
+    font-size: 1.3rem;
+}
+#userForm label{
+    margin: 10px;
+    margin: 5px 0px 5px 0px;
+}
+#userForm input,textarea{
+    color: black;
+    font-size: 1.3rem;
+    padding: 5px;
+    border-radius: 4px;
+}
+.formBtn{
+    margin-top: 10px;
+}
+.formBtn input:nth-child(1){
+    background-color: orange;
+    margin-right: 10px;
+}
+.formBtn input:nth-child(2){
+    background-color: cornflowerblue;
+}
+#otpForm{
+    display: flex;
+    flex-direction: column;
+    width: 440px;
+    margin: auto;
+    margin-top: 40px;
+}
+#otpForm input{
+    color: black;
+}
+#otpForm label{
+    font-size: 1.3rem;
+}
+#otpForm input{
+    margin-top: 17px;
+    font-size: 1.4rem;
+    color: black;
+    padding: 8px;
+    border-radius: 10px;
+}
+.forgotPara{
+    margin-top: 10px;
+    cursor: pointer;
+}
+.forgotPara u{
+    color: #7f7feb;
+}

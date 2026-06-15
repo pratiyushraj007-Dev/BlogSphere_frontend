@@ -1,0 +1,51 @@
+{
+  "name": "Client",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Blogsphere is platform where people share the experience",
+  "license": "ISC",
+  "author": "Pratiyush Raj",
+  "type": "module",
+  "main": "eslint.config.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ddevkim/carousel-circular-3d": "^1.0.0",
+    "@tiptap/core": "^3.26.1",
+    "@tiptap/extension-highlight": "^3.26.1",
+    "@tiptap/extension-image": "^3.26.1",
+    "@tiptap/extension-list": "^3.26.1",
+    "@tiptap/extension-subscript": "^3.26.1",
+    "@tiptap/extension-superscript": "^3.26.1",
+    "@tiptap/extension-text-align": "^3.26.1",
+    "@tiptap/extensions": "^3.26.1",
+    "@tiptap/pm": "^3.26.1",
+    "@tiptap/react": "^3.26.1",
+    "@tiptap/starter-kit": "^3.26.1",
+    "html2pdf.js": "^0.14.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "react-hotkeys-hook": "^5.3.2",
+    "react-router-dom": "^7.16.0"
+  },
+  "devDependencies": {
+    "@base-ui/react": "^1.5.0",
+    "@eslint/js": "^10.0.1",
+    "@types/lodash.throttle": "^4.1.9",
+    "@types/node": "^25.9.3",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "class-variance-authority": "^0.7.1",
+    "eslint": "^10.3.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.6.0",
+    "sass-embedded": "^1.100.0",
+    "vite": "^8.0.12"
+  }
+}
