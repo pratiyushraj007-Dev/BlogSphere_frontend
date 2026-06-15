@@ -7,7 +7,7 @@ import Registration from "./components/Registration";
 import Login from "./components/Login";
 import Blog from "./components/Blog";
 import BlogPage from "./components/BlogPage";
-import ConfirmationEmail from "./components/confirmationEmail";
+import ConfirmationEmail from "./components/ConfirmationEmail";
 import ResetPassword from "./components/ResetPassword";
 const App = () => {
   return (
