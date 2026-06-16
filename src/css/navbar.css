@@ -101,7 +101,7 @@ nav {
         display: none;
     }
 
-    .hamburgerContainer {
+    .hamburgerContainer,.navBtnGroup {
         display: block;
         position: absolute;
         top: 30px;
