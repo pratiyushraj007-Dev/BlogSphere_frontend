@@ -114,7 +114,8 @@ const DashBoard = () => {
 
     return (
         <>
-            <Navbar />
+            {userInfo?<>
+                <Navbar />
             <AlertContainer isSpinner={spinner} para={message} ref={alertContainer}/>
             <section className="userProfileContainer">
                 <div className="userProfileImage">
@@ -185,6 +186,9 @@ const DashBoard = () => {
                     </div>
                 </div>
             </section>
+            </>:<>
+             <p style={{textAlign:"center",fontSize:"2rem",marginTop:"40px"}}>Please Login to get access</p>
+            </>}
         </>
     )
 }
