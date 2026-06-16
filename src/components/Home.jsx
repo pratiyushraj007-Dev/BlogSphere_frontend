@@ -116,9 +116,11 @@ const Home = () => {
           {isLogin ? <>
           <button id='postBtn' onClick={()=>navigate("/post")}>Create</button>
             <button id="seeBtn" onClick={()=>navigate("/blog")}>Explore</button>
+
           </> : <>
             <button id='signUpBtn' onClick={()=>navigate("/registration")}>SignUp</button>
             <button id="signInBtn" onClick={()=>navigate("/login")}>LogIn</button>
+            <button id="seeBtn" onClick={()=>navigate("/blog")}>Explore</button>
           </>}
         </div>
 
