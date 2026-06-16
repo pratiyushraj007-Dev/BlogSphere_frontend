@@ -143,10 +143,10 @@ const DashBoard = () => {
                     </div>
                     <div className="dashboardButtonsContainer">
                         <button className="postButton">
-                            <Link to="/post">Post</Link>
+                            <Link to="/post">Create</Link>
                         </button>
                         <button className="seeButton">
-                            <Link to="/blog">See Blog</Link>
+                            <Link to="/blog">Explore</Link>
                         </button>
                         <button className="logoutButton" onClick={handleLogout}>
                             <Link to="/logout">Logout</Link>
