@@ -68,22 +68,26 @@
   border-radius: 8px;
   border: 1px solid;
 }
-#postBtn{
+
+#postBtn {
   background: #00fff0;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #0083fe, #00fff0);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #0083fe, #00fff0);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #0083fe, #00fff0);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #0083fe, #00fff0);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
-#seeBtn{
-  background: #D70652;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #FF025E, #D70652);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #FF025E, #D70652);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+#seeBtn {
+  background: #05386b;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #5cdb95, #05386b);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #5cdb95, #05386b);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
+
 .websiteIntroBtn button:hover {
   box-shadow: 0px 0px 10px;
 }
@@ -137,10 +141,12 @@
   border: 1px solid;
   box-shadow: 0px 0px 5px;
 }
-.featuresCard:hover{
+
+.featuresCard:hover {
   transform: translateY(-10px);
   box-shadow: 0px 0px 20px;
 }
+
 .featuresImg img {
   width: 100%;
   height: 20rem;
@@ -148,13 +154,14 @@
 }
 
 .featuresTitle {
-  color:cadetblue !important;
+  color: cadetblue !important;
   text-align: center;
   font-size: 2rem !important;
   margin: 14px !important;
   font-family: monospace;
 }
-.featuresDesc{
+
+.featuresDesc {
   font-size: 1.3rem !important;
 }
 
