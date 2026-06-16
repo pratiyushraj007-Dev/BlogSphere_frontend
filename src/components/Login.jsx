@@ -44,6 +44,14 @@ const Login = () => {
             {userCredentials?.BlogSphereToken ?
                 <p>You are logged IN</p> :
                 <section id="loginFormContainer">
+                    <div id="oauthContainer">
+                            <button id="googleBtn" onClick={() => {
+                                window.location.href =
+                                    `${import.meta.env.VITE_API_URL}/api/auth/google`;
+                            }}>
+                                Continue with Google
+                            </button>
+                        </div>
                     <form action="" id="userForm" onSubmit={handleSubmit}>
                         <p style={{textAlign:"center",marginBottom:"30px",fontSize:"1.8rem",color:"#fca311"}}>Welcome back! Sign in to access your dashboard, blogs, and bookmarks.</p>
                         <label htmlFor="userEmail" >Email:</label>

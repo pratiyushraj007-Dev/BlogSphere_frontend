@@ -1,34 +1,44 @@
-#userForm{
+#registartionFormContainer,#loginFormContainer{
+    margin-top: 80px;
+}
+#userForm {
     display: flex;
     flex-direction: column;
-    max-width:55rem;
+    max-width: 55rem;
     width: auto;
     margin: auto;
     padding: 6px;
-    margin-top: 85px;
     font-size: 1.3rem;
+    margin-top: 20px;
 }
-#userForm label{
+
+#userForm label {
     margin: 10px;
     margin: 5px 0px 5px 0px;
 }
-#userForm input,textarea{
+
+#userForm input,
+textarea {
     color: black;
     font-size: 1.3rem;
     padding: 5px;
     border-radius: 4px;
 }
-.formBtn{
+
+.formBtn {
     margin-top: 10px;
 }
-.formBtn input:nth-child(1){
+
+.formBtn input:nth-child(1) {
     background-color: orange;
     margin-right: 10px;
 }
-.formBtn input:nth-child(2){
+
+.formBtn input:nth-child(2) {
     background-color: cornflowerblue;
 }
-#otpForm{
+
+#otpForm {
     display: flex;
     flex-direction: column;
     max-width: 440px;
@@ -36,23 +46,48 @@
     margin: auto;
     margin-top: 40px;
 }
-#otpForm input{
+
+#otpForm input {
     color: black;
 }
-#otpForm label{
+
+#otpForm label {
     font-size: 1.3rem;
 }
-#otpForm input{
+
+#otpForm input {
     margin-top: 17px;
     font-size: 1.4rem;
     color: black;
     padding: 8px;
     border-radius: 10px;
 }
-.forgotPara{
+
+.forgotPara {
     margin-top: 10px;
     cursor: pointer;
 }
-.forgotPara u{
+
+.forgotPara u {
     color: #7f7feb;
+}
+
+#oauthContainer{
+    display: flex;
+    justify-content: center;
+}
+
+#googleBtn {
+    padding: 10px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    background: #8BDEDA;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #EF9393, #E17DC2, #998EE0, #43ADD0, #8BDEDA);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #EF9393, #E17DC2, #998EE0, #43ADD0, #8BDEDA);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+#googleBtn:hover{
+    box-shadow: 0px 0px 10px ;
 }
