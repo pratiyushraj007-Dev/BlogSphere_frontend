@@ -58,7 +58,7 @@ const Navbar = () => {
                                         <NavLink
                                             to="/blog"
                                         >
-                                            Recent-Blog
+                                            Explore
                                         </NavLink>
                                     </li>
                                 </ul>
