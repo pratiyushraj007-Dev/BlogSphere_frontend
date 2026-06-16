@@ -51,17 +51,21 @@ nav {
 .navLinks li:hover::after {
     width: 100%;
 }
-.navBtnGroup button:nth-child(1){
+
+.navBtnGroup button:nth-child(1) {
     margin-right: 10px;
 }
+
 .navBtnGroup button {
     font-size: 1.3rem;
     padding: 6px 12px 6px 12px;
     border-radius: 5px;
 }
-.navBtnGroup button:hover{
+
+.navBtnGroup button:hover {
     box-shadow: 0px 0px 10px #ffffff;
 }
+
 #signUpBtn {
     background: #00fff0;
     /* fallback for old browsers */
@@ -89,21 +93,26 @@ nav {
 }
 
 @media only screen and (max-width:650px) {
-    nav{
-        align-items: flex-start;
+    nav {
+        display: block;
     }
+
     .dropDownContainer {
         display: none;
     }
 
     .hamburgerContainer {
         display: block;
+        position: absolute;
+        top: 30px;
+        right: 32px;
+
     }
 
     .webLinks {
         display: flex;
         flex-direction: column-reverse;
-        align-items: center;  
+        align-items: center;
         margin-top: 8px;
     }
 
@@ -114,7 +123,8 @@ nav {
     .navLinks {
         flex-direction: column;
     }
-    .hamburgerContainer{
+
+    .hamburgerContainer {
         margin-bottom: 10px;
     }
 }
